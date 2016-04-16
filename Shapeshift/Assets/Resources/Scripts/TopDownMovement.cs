@@ -3,7 +3,7 @@ using System.Collections;
 
 public class TopDownMovement : MultiplayerBehaviour {
 
-    Rigidbody2D rigidbody;
+    Rigidbody2D rigidBody;
 
     [SerializeField]
     float MOVE_SPEED;
@@ -12,13 +12,13 @@ public class TopDownMovement : MultiplayerBehaviour {
 
     // Use this for initialization
     void Start () {
-        rigidbody = GetComponent<Rigidbody2D>();
+        rigidBody = GetComponent<Rigidbody2D>();
     }
 	
 	// Update is called once per frame
 	void Update () {
-        rigidbody.velocity = MOVE_SPEED * Input.GetAxis(AxisString("Vertical")) * transform.up;
-        Debug.Log(rigidbody.velocity);
+        rigidBody.velocity = MOVE_SPEED * Input.GetAxis(AxisString("Vertical")) * transform.up;
+        Debug.Log(rigidBody.velocity);
         transform.Rotate(0,0,-TURN_SPEED * Input.GetAxis(AxisString("Horizontal")));
     }
 }
