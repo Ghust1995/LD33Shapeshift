@@ -18,6 +18,7 @@ public abstract class MultiplayerBehaviour : MonoBehaviour {
 
     protected string AxisString(string axisName)
     {
-        return PlayerID + "_" + axisName;
+        return "j" +  PlayerID + "_" + axisName;
+        //return  PlayerID + "_" + axisName;
     }
 }

@@ -87,10 +87,11 @@ public class AreaAttacker : MultiplayerBehaviour {
         Invoke("EndAttack", MoveLag);
     }
 
+    bool hitMiss;
     void EndAttack()
     {
         //Debug.Log("Ending Attack");
-
+        hitMiss = !areaAttack.HitSuccess;
         Destroy(areaAttack.gameObject);
         Invoke("EndAttackLag", EndLag);
     }
@@ -98,6 +99,10 @@ public class AreaAttacker : MultiplayerBehaviour {
     void EndAttackLag()
     {
         //Debug.Log("Ending Attack Lag");
+        if(hitMiss)
+        {
+            GetComponent<ShapeShifter>().ShiftShape();
+        }
         _isAttacking = false;
     }
 }

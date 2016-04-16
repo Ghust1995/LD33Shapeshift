@@ -51,11 +51,16 @@ public class ShapeShifter : MultiplayerBehaviour {
 
 	void Update(){
 		if(timeSinceLast > cooldown && Input.GetButtonDown(AxisString("Shapeshift"))){
-            _currShape = GetNext(_currShape);
-			ChangeSprite(_currShape);
-			timeSinceLast = 0;
-		}
+            //ShiftShape();
+        }
 
 		timeSinceLast+= Time.deltaTime;
 	}
+
+    public void ShiftShape()
+    {
+        _currShape = GetNext(_currShape);
+        ChangeSprite(_currShape);
+        timeSinceLast = 0;
+    }
 }

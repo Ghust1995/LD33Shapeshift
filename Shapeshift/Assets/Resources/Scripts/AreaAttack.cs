@@ -11,6 +11,14 @@ public class AreaAttack : MonoBehaviour {
 
     private ShapeType _attackingShape;
 
+    private bool _hitSuccess = false;
+    public bool HitSuccess
+    {
+        get
+        {
+            return _hitSuccess;
+        }
+    }
 
     private int _spawnerID;
     // Use this for initialization
@@ -37,16 +45,17 @@ public class AreaAttack : MonoBehaviour {
         if (shapeShiferHit.PlayerID != _spawnerID)
         {
             var forceDirection = (other.transform.position - transform.position).normalized;
-            Debug.Log("HIT SOMETHING: "+ _attackForce * forceDirection + "--STUN TIME: " + _stunTime);
-            other.gameObject.GetComponent<Stunnable>().Stun(_stunTime);
             var shapeMod = GetShapeMultiplier(_attackingShape, other.GetComponent<ShapeShifter>().CurrentShape);
+            other.gameObject.GetComponent<Stunnable>().Stun(Mathf.Clamp(shapeMod * _stunTime, 0, _stunTime));
+            other.gameObject.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
             other.gameObject.GetComponent<Rigidbody2D>().AddForce(_attackForce * shapeMod * forceDirection, ForceMode2D.Impulse);
+            _hitSuccess = true;
         }
     }
 
     float GetShapeMultiplier(ShapeType atacker, ShapeType defender)
     {
-        int result = (atacker - defender) % 3;
+        int result = (atacker - defender + 3) % 3;
 
         switch(result)
         {
@@ -55,7 +64,7 @@ public class AreaAttack : MonoBehaviour {
             case 1:
                 return _winModifier;
             case 2:
-                return _winModifier;
+                return _loseModifier;
         }
 
         return 0;
