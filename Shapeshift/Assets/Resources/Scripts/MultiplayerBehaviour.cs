@@ -3,12 +3,17 @@ using System.Collections;
 
 public abstract class MultiplayerBehaviour : MonoBehaviour {
 
-    protected int PlayerID;
-
-    void Start()
+    private int _playerID;
+    protected int PlayerID
     {
-        PlayerID = int.Parse(gameObject.name.Remove(0, gameObject.name.Length));
-        Debug.Log(PlayerID);
+        get
+        {
+            if (_playerID == 0)
+            {
+                _playerID = int.Parse(gameObject.name.Remove(0, gameObject.name.Length - 1));
+            }
+            return _playerID;
+        }
     }
 
     protected string AxisString(string axisName)
