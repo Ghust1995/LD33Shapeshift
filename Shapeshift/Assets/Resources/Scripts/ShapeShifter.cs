@@ -30,7 +30,7 @@ public class ShapeShifter : MultiplayerBehaviour {
 	}
 
 	void Update(){
-		if(Input.GetButton(PlayerID + "Shapeshift")){
+		if(Input.GetButtonDown(AxisString("Shapeshift"))){
 			currElement = GetNext(currElement);
 			ChangeSprite(currElement);
 		}
