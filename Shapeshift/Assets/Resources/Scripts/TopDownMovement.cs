@@ -18,7 +18,6 @@ public class TopDownMovement : MultiplayerBehaviour {
 	// Update is called once per frame
 	void Update () {
         rigidbody.velocity = MOVE_SPEED * Input.GetAxis(AxisString("Vertical")) * transform.up;
-        Debug.Log(rigidbody.velocity);
         transform.Rotate(0,0,-TURN_SPEED * Input.GetAxis(AxisString("Horizontal")));
     }
 }

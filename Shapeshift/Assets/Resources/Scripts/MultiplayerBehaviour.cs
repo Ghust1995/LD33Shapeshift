@@ -4,7 +4,7 @@ using System.Collections;
 public abstract class MultiplayerBehaviour : MonoBehaviour {
 
     private int _playerID;
-    protected int PlayerID
+    public int PlayerID
     {
         get
         {
