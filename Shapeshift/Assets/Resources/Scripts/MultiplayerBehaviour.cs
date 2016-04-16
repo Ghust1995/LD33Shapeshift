@@ -8,6 +8,7 @@ public abstract class MultiplayerBehaviour : MonoBehaviour {
     void Start()
     {
         PlayerID = int.Parse(gameObject.name.Remove(0, gameObject.name.Length));
+        Debug.Log(PlayerID);
     }
 
     protected string AxisString(string axisName)
