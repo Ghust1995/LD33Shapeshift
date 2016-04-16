@@ -3,5 +3,11 @@ using System.Collections;
 
 public class Player : MonoBehaviour {
 
-    public int ID;
+	public int PlayerID;
+
+	public void Die(){
+		Destroy(this.gameObject);
+		//End game
+	}
+
 }
