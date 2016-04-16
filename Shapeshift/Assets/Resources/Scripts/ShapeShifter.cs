@@ -6,14 +6,14 @@ public class ShapeShifter : MultiplayerBehaviour {
 	float timeSinceLast = 0.0f;
 	float cooldown = 1.0f;
 
-	Sprite spriteRock;
-	Sprite spritePaper;
-	Sprite spriteScissors;
+    Material materialRock;
+    Material materialPaper;
+    Material materialScissors;
 
 	void Start(){
-		spriteRock = Resources.Load<Sprite>("Sprites/placeholderPaper");
-		spritePaper = Resources.Load<Sprite>("Sprites/placeholderRock");
-		spriteScissors = Resources.Load<Sprite>("Sprites/placeholderScissors");
+		materialRock = Resources.Load<Material>("Materials/placeholderPaperMaterial");
+		materialPaper = Resources.Load<Material>("Materials/placeholderRockMaterial");
+		materialScissors = Resources.Load<Material>("Materials/placeholderScissorsMaterial");
 	}
 
 	ShapeType _currShape = ShapeType.rock;
@@ -42,19 +42,19 @@ public class ShapeShifter : MultiplayerBehaviour {
 
 	private void ChangeSprite(ShapeType element){
 		if(element.Equals(ShapeType.paper))
-			this.gameObject.GetComponent<SpriteRenderer>().sprite = spriteRock;
+			this.gameObject.GetComponent<MeshRenderer>().material = materialRock;
 		if(element.Equals(ShapeType.rock))
-			this.gameObject.GetComponent<SpriteRenderer>().sprite = spritePaper;
+			this.gameObject.GetComponent<MeshRenderer>().material = materialPaper;
 		if(element.Equals(ShapeType.scissors))
-			this.gameObject.GetComponent<SpriteRenderer>().sprite = spriteScissors;
+			this.gameObject.GetComponent<MeshRenderer>().material = materialScissors;
 	}
 
 	void Update(){
-		if(timeSinceLast > cooldown && Input.GetButtonDown(AxisString("Shapeshift"))){
-            //ShiftShape();
+		if(Input.GetButtonDown(AxisString("Shapeshift"))){
+            ShiftShape();
         }
 
-		timeSinceLast+= Time.deltaTime;
+        timeSinceLast += Time.deltaTime;
 	}
 
     public void ShiftShape()

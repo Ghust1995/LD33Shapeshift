@@ -38,17 +38,17 @@ public class AreaAttack : MonoBehaviour {
         gameObject.SetActive(true);
     }
 
-    void OnTriggerEnter2D(Collider2D other)
+    void OnTriggerEnter(Collider other)
     {
         var shapeShiferHit = other.gameObject.GetComponent<ShapeShifter>();
         // TODO: Change topdown movement to TopDownMovement;
-        if (shapeShiferHit.PlayerID != _spawnerID)
+        if (shapeShiferHit.PlayerID != _spawnerID && !_hitSuccess)
         {
-            var forceDirection = (other.transform.position - transform.position).normalized;
+            var forceDirection = Vector3.ProjectOnPlane((other.transform.position - transform.position).normalized, new Vector3(0, 1, 0));
             var shapeMod = GetShapeMultiplier(_attackingShape, other.GetComponent<ShapeShifter>().CurrentShape);
             other.gameObject.GetComponent<Stunnable>().Stun(Mathf.Clamp(shapeMod * _stunTime, 0, _stunTime));
-            other.gameObject.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
-            other.gameObject.GetComponent<Rigidbody2D>().AddForce(_attackForce * shapeMod * forceDirection, ForceMode2D.Impulse);
+            other.gameObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
+            other.gameObject.GetComponent<Rigidbody>().AddForce(_attackForce * shapeMod * forceDirection, ForceMode.Impulse);
             _hitSuccess = true;
         }
     }

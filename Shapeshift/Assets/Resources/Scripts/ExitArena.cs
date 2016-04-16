@@ -3,7 +3,7 @@ using System.Collections;
 
 public class ExitArena : MonoBehaviour {
 	
-	void OnTriggerExit2D(Collider2D other){
+	void OnTriggerExit(Collider other){
 		other.gameObject.GetComponent<Player>().Die();
 	}
 }
