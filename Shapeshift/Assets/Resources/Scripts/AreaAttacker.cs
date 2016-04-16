@@ -3,7 +3,7 @@ using System.Collections;
 
 public class AreaAttacker : MultiplayerBehaviour {
 
-    Rigidbody2D rigidBody;
+    Rigidbody rigidBody;
 
     [SerializeField]
     float StartLag = 0.5f;
@@ -51,13 +51,14 @@ public class AreaAttacker : MultiplayerBehaviour {
 
     void Start()
     {
-        rigidBody = GetComponent<Rigidbody2D>();
+        rigidBody = GetComponent<Rigidbody>();
         timeSinceLast = Cooldown;
     }
 
     // Update is called once per frame
     void Update ()
     {
+        GetComponent<Animator>().SetFloat("Cooldown", timeSinceLast - Cooldown);
         if (Input.GetButton(AxisString("Attack")) && timeSinceLast > Cooldown)
         {
             StartAttack();
@@ -73,7 +74,7 @@ public class AreaAttacker : MultiplayerBehaviour {
         //Debug.Log("Starting attack");
         timeSinceLast = 0.0f;
         _isAttacking = true;
-        GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+        GetComponent<Rigidbody>().velocity = Vector3.zero;
         Invoke("Attack", StartLag);
     }
 

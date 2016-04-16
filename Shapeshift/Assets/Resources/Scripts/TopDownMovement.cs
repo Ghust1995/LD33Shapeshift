@@ -3,7 +3,7 @@ using System.Collections;
 
 public class TopDownMovement : MultiplayerBehaviour {
 
-    Rigidbody2D rigidBody;
+    Rigidbody rigidBody;
 
     [SerializeField]
     float MOVE_SPEED = 5.0f;
@@ -15,7 +15,7 @@ public class TopDownMovement : MultiplayerBehaviour {
 
     // Use this for initialization
     void Start () {
-        rigidBody = GetComponent<Rigidbody2D>();
+        rigidBody = GetComponent<Rigidbody>();
         hitStunInfo = GetComponent<Stunnable>();
         atackInfo = GetComponent<AreaAttacker>();
         
@@ -26,8 +26,10 @@ public class TopDownMovement : MultiplayerBehaviour {
         if(!hitStunInfo.IsStunned && !atackInfo.IsAttacking)
         {
             var x = Input.GetAxis(AxisString("Horizontal"));
-            var y = Input.GetAxis(AxisString("Vertical"));
-            rigidBody.velocity = MOVE_SPEED * new Vector2(x, y);
+            var z = Input.GetAxis(AxisString("Vertical"));
+            //Debug.Log(x + " " + z);
+            rigidBody.velocity = MOVE_SPEED * new Vector3(x, 0, z);
+            //Debug.Log(rigidBody.velocity);
             //TODO: Fix rotation
             //if(x != 0 || y != 0)
                 //transform.rotation = new Quaternion(0, 0, Mathf.Sin(Mathf.Atan2(x, y)), Mathf.Cos(Mathf.Atan2(x, y)));
