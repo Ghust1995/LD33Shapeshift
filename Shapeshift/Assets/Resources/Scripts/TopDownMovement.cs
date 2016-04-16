@@ -7,8 +7,6 @@ public class TopDownMovement : MultiplayerBehaviour {
 
     [SerializeField]
     float MOVE_SPEED = 5.0f;
-    [SerializeField]
-    float TURN_SPEED = 2.0f;
 
     Stunnable hitStunInfo;
     AreaAttacker atackInfo;
