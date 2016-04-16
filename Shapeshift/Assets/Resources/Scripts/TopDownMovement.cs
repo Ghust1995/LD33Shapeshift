@@ -10,14 +10,22 @@ public class TopDownMovement : MultiplayerBehaviour {
     [SerializeField]
     float TURN_SPEED;
 
+    Stunnable hitStunInfo;
+    AreaAttacker atackInfo;
+
     // Use this for initialization
     void Start () {
         rigidBody = GetComponent<Rigidbody2D>();
+        hitStunInfo = GetComponent<Stunnable>();
+        atackInfo = GetComponent<AreaAttacker>();
     }
 	
 	// Update is called once per frame
 	void Update () {
-        rigidBody.velocity = MOVE_SPEED * Input.GetAxis(AxisString("Vertical")) * transform.up;
-        transform.Rotate(0,0,-TURN_SPEED * Input.GetAxis(AxisString("Horizontal")));
+        if(!hitStunInfo.IsStunned && !atackInfo.IsAttacking)
+        {
+            rigidBody.velocity = MOVE_SPEED * Input.GetAxis(AxisString("Vertical")) * transform.up;
+            transform.Rotate(0, 0, -TURN_SPEED * Input.GetAxis(AxisString("Horizontal")));
+        }
     }
 }

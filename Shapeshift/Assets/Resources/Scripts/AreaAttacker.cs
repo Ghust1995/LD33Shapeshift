@@ -19,7 +19,14 @@ public class AreaAttacker : MultiplayerBehaviour {
 
     float timeSinceLast = 0.0f;
 
-    private bool isAttacking = false;
+    private bool _isAttacking = false;
+    public bool IsAttacking
+    {
+        get
+        {
+            return _isAttacking;
+        }
+    }
 
 
     public GameObject areaAttackPrefab;
@@ -29,9 +36,13 @@ public class AreaAttacker : MultiplayerBehaviour {
     [SerializeField]
     public float ATTACK_FORCE;
 
+    [SerializeField]
+    public float STUN_TIME;
+
     void Start()
     {
         rigidbody = GetComponent<Rigidbody2D>();
+        timeSinceLast = Cooldown;
     }
 
     // Update is called once per frame
@@ -41,7 +52,7 @@ public class AreaAttacker : MultiplayerBehaviour {
         {
             StartAttack();
         }
-        if(!isAttacking)
+        if(!_isAttacking)
         {
             timeSinceLast += Time.deltaTime;
         }        
@@ -49,26 +60,26 @@ public class AreaAttacker : MultiplayerBehaviour {
 
     void StartAttack()
     {
-        Debug.Log("Starting attack");
-
+        //Debug.Log("Starting attack");
         timeSinceLast = 0.0f;
-        isAttacking = true;
+        _isAttacking = true;
+        GetComponent<Rigidbody2D>().velocity = Vector2.zero;
         Invoke("Attack", StartLag);
     }
 
     void Attack()
     {
-        Debug.Log("Attacking");
+        //Debug.Log("Attacking");
 
         var aa = (GameObject)Instantiate(areaAttackPrefab, transform.position, transform.rotation);
         areaAttack = aa.GetComponent<AreaAttack>();
-        areaAttack.Initialize(PlayerID, ATTACK_FORCE);
+        areaAttack.Initialize(PlayerID, ATTACK_FORCE, STUN_TIME);
         Invoke("EndAttack", MoveLag);
     }
 
     void EndAttack()
     {
-        Debug.Log("Ending Attack");
+        //Debug.Log("Ending Attack");
 
         Destroy(areaAttack.gameObject);
         Invoke("EndAttackLag", EndLag);
@@ -76,7 +87,7 @@ public class AreaAttacker : MultiplayerBehaviour {
 
     void EndAttackLag()
     {
-        Debug.Log("Ending Attack Lag");
-        isAttacking = false;
+        //Debug.Log("Ending Attack Lag");
+        _isAttacking = false;
     }
 }
