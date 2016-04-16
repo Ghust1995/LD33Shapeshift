@@ -3,7 +3,7 @@ using System.Collections;
 
 public class AreaAttacker : MultiplayerBehaviour {
 
-    Rigidbody2D rigidbody;
+    Rigidbody2D rigidBody;
 
     [SerializeField]
     float StartLag = 0.5f;
@@ -41,7 +41,7 @@ public class AreaAttacker : MultiplayerBehaviour {
 
     void Start()
     {
-        rigidbody = GetComponent<Rigidbody2D>();
+        rigidBody = GetComponent<Rigidbody2D>();
         timeSinceLast = Cooldown;
     }
 

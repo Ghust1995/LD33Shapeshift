@@ -3,6 +3,20 @@ using System.Collections;
 
 public class ShapeShifter : MultiplayerBehaviour {
 
+
+	float timeSinceLast = 0.0f;
+	float cooldown = 1.0f;
+
+	Sprite spriteRock;
+	Sprite spritePaper;
+	Sprite spriteScissors;
+
+	void Start(){
+		spriteRock = Resources.Load<Sprite>("Sprites/placeholderPaper");
+		spritePaper = Resources.Load<Sprite>("Sprites/placeholderRock");
+		spriteScissors = Resources.Load<Sprite>("Sprites/placeholderScissors");
+	}
+
 	enum element{rock, paper, scissors};
 	[SerializeField]
 	element currElement = element.rock;
@@ -22,17 +36,20 @@ public class ShapeShifter : MultiplayerBehaviour {
 
 	private void ChangeSprite(element element){
 		if(element.Equals(element.paper))
-			this.gameObject.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Sprites/placeholderPaper");
+			this.gameObject.GetComponent<SpriteRenderer>().sprite = spriteRock;
 		if(element.Equals(element.rock))
-			this.gameObject.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Sprites/placeholderRock");
+			this.gameObject.GetComponent<SpriteRenderer>().sprite = spritePaper;
 		if(element.Equals(element.scissors))
-			this.gameObject.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Sprites/placeholderScissors");
+			this.gameObject.GetComponent<SpriteRenderer>().sprite = spriteScissors;
 	}
 
 	void Update(){
-		if(Input.GetButtonDown(AxisString("Shapeshift"))){
+		if(timeSinceLast > cooldown && Input.GetButtonDown(AxisString("Shapeshift"))){
 			currElement = GetNext(currElement);
 			ChangeSprite(currElement);
+			timeSinceLast = 0;
 		}
+
+		timeSinceLast+= Time.deltaTime;
 	}
 }
