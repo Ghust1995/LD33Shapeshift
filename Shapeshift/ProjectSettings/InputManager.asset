@@ -105,10 +105,10 @@ InputManager:
     m_Name: 2_Horizontal
     descriptiveName: 
     descriptiveNegativeName: 
-    negativeButton: 
-    positiveButton: left shift
+    negativeButton: left
+    positiveButton: right
     altNegativeButton: 
-    altPositiveButton: mouse 2
+    altPositiveButton: 
     gravity: 1000
     dead: 0.001
     sensitivity: 1000
@@ -121,8 +121,8 @@ InputManager:
     m_Name: 2_Vertical
     descriptiveName: 
     descriptiveNegativeName: 
-    negativeButton: 
-    positiveButton: left shift
+    negativeButton: down
+    positiveButton: up
     altNegativeButton: 
     altPositiveButton: mouse 2
     gravity: 1000

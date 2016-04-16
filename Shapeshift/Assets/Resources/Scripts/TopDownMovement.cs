@@ -6,9 +6,9 @@ public class TopDownMovement : MultiplayerBehaviour {
     Rigidbody2D rigidBody;
 
     [SerializeField]
-    float MOVE_SPEED;
+    float MOVE_SPEED = 0.0f;
     [SerializeField]
-    float TURN_SPEED;
+    float TURN_SPEED = 0.0f;
 
     Stunnable hitStunInfo;
     AreaAttacker atackInfo;

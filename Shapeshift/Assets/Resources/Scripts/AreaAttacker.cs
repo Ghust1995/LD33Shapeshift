@@ -39,6 +39,16 @@ public class AreaAttacker : MultiplayerBehaviour {
     [SerializeField]
     public float STUN_TIME;
 
+    [SerializeField]
+    public float WIN_MODIFIER;
+
+    [SerializeField]
+    public float LOSE_MODIFIER;
+
+    [SerializeField]
+    public float NEUTRAL_MODIFIER;
+
+
     void Start()
     {
         rigidbody = GetComponent<Rigidbody2D>();
@@ -73,7 +83,7 @@ public class AreaAttacker : MultiplayerBehaviour {
 
         var aa = (GameObject)Instantiate(areaAttackPrefab, transform.position, transform.rotation);
         areaAttack = aa.GetComponent<AreaAttack>();
-        areaAttack.Initialize(PlayerID, ATTACK_FORCE, STUN_TIME);
+        areaAttack.Initialize(PlayerID, ATTACK_FORCE, STUN_TIME, WIN_MODIFIER, LOSE_MODIFIER, NEUTRAL_MODIFIER, GetComponent<ShapeShifter>().CurrentShape);
         Invoke("EndAttack", MoveLag);
     }
 

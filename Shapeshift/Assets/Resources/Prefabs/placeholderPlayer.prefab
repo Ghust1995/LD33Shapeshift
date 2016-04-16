@@ -112,7 +112,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 273c0f705880eb443877fb7c42c64ce5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currElement: 0
+  _currShape: 0
 --- !u!114 &11488688
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -129,8 +129,11 @@ MonoBehaviour:
   EndLag: 0
   Cooldown: 2
   areaAttackPrefab: {fileID: 168316, guid: a2f9986961da8344dbe982ff3573f551, type: 2}
-  ATTACK_FORCE: 20
-  STUN_TIME: 0
+  ATTACK_FORCE: 5
+  STUN_TIME: 1
+  WIN_MODIFIER: 2
+  LOSE_MODIFIER: 0.1
+  NEUTRAL_MODIFIER: 1
 --- !u!212 &21255360
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -157,7 +160,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 517b762c5cd26df44af941cc8def9352, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 6f7b74e27b988c74cb42f4ca30a6a4c9, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -167,7 +170,32 @@ Prefab:
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
-    m_Modifications: []
+    m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 6f7b74e27b988c74cb42f4ca30a6a4c9,
+        type: 3}
+    - target: {fileID: 0}
+      propertyPath: STUN_TIME
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: WIN_MODIFIER
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: NEUTRAL_MODIFIER
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: LOSE_MODIFIER
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: ATTACK_FORCE
+      value: 5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 173608}

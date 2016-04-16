@@ -3,36 +3,43 @@ using System.Collections;
 
 public class ShapeShifter : MultiplayerBehaviour {
 
-	enum element{rock, paper, scissors};
 	[SerializeField]
-	element currElement = element.rock;
+	ShapeType _currShape = ShapeType.rock;
 
-	private element GetNext(element element){
+    public ShapeType CurrentShape
+    {
+        get
+        {
+            return _currShape;
+        }
+    }
+
+	private ShapeType GetNext(ShapeType element){
 		switch(element)
 			{
-				case element.paper:
-					return element.scissors;
-				case element.scissors:
-					return element.rock;
-				case element.rock:
-					return element.paper;
+				case ShapeType.paper:
+					return ShapeType.scissors;
+				case ShapeType.scissors:
+					return ShapeType.rock;
+				case ShapeType.rock:
+					return ShapeType.paper;
 			}
-			return element.rock; //Se não receber um dos 3, o default é rock
+			return ShapeType.rock; //Se não receber um dos 3, o default é rock
 	}
 
-	private void ChangeSprite(element element){
-		if(element.Equals(element.paper))
+	private void ChangeSprite(ShapeType element){
+		if(element.Equals(ShapeType.paper))
 			this.gameObject.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Sprites/placeholderPaper");
-		if(element.Equals(element.rock))
+		if(element.Equals(ShapeType.rock))
 			this.gameObject.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Sprites/placeholderRock");
-		if(element.Equals(element.scissors))
+		if(element.Equals(ShapeType.scissors))
 			this.gameObject.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Sprites/placeholderScissors");
 	}
 
 	void Update(){
 		if(Input.GetButtonDown(AxisString("Shapeshift"))){
-			currElement = GetNext(currElement);
-			ChangeSprite(currElement);
+			_currShape = GetNext(_currShape);
+			ChangeSprite(_currShape);
 		}
 	}
 }
