@@ -74,7 +74,7 @@ public class AreaAttacker : MultiplayerBehaviour {
         //Debug.Log("Starting attack");
         timeSinceLast = 0.0f;
         _isAttacking = true;
-        GetComponent<Rigidbody>().velocity = Vector3.zero;
+        //GetComponent<Rigidbody>().velocity = Vector3.zero;
         GetComponent<Rigidbody>().AddForce(Vector3.up * 15, ForceMode.Impulse);
         Invoke("Attack", StartLag);
     }
