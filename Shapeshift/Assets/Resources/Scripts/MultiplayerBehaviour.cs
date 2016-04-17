@@ -18,7 +18,12 @@ public abstract class MultiplayerBehaviour : MonoBehaviour {
 
     protected string AxisString(string axisName)
     {
-        return "j" +  PlayerID + "_" + axisName;
-        //return  PlayerID + "_" + axisName;
+        var joysticks = Input.GetJoystickNames();
+        var s = PlayerID + "_" + axisName;
+        if (PlayerID <= joysticks.Length)
+        {
+            s = "j" + s;
+        }
+        return s;
     }
 }

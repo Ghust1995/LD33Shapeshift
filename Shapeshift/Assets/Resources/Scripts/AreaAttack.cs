@@ -41,6 +41,10 @@ public class AreaAttack : MonoBehaviour {
     void OnTriggerEnter(Collider other)
     {
         var shapeShiferHit = other.gameObject.GetComponent<ShapeShifter>();
+        if(shapeShiferHit == null)
+        {
+            return;
+        }
         // TODO: Change topdown movement to TopDownMovement;
         if (shapeShiferHit.PlayerID != _spawnerID && !_hitSuccess)
         {

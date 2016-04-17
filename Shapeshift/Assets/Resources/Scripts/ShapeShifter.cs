@@ -51,7 +51,7 @@ public class ShapeShifter : MultiplayerBehaviour {
 
 	void Update(){
 		if(Input.GetButtonDown(AxisString("Shapeshift"))){
-            ShiftShape();
+            //ShiftShape();
         }
 
         timeSinceLast += Time.deltaTime;
@@ -59,8 +59,9 @@ public class ShapeShifter : MultiplayerBehaviour {
 
     public void ShiftShape()
     {
+        GetComponent<Animator>().SetTrigger("ChangeState");
         _currShape = GetNext(_currShape);
-        ChangeSprite(_currShape);
+        //ChangeSprite(_currShape);
         timeSinceLast = 0;
     }
 }
