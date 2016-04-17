@@ -21,7 +21,7 @@ public class TopDownMovement : MultiplayerBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if(!hitStunInfo.IsStunned && !atackInfo.IsAttacking)
+        if(!hitStunInfo.IsStunned && !atackInfo.IsAttacking && GameManager.gameStart)
         {
             var x = Input.GetAxis(AxisString("Horizontal"));
             var z = Input.GetAxis(AxisString("Vertical"));

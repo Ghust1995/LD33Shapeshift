@@ -48,18 +48,19 @@ public class AreaAttacker : MultiplayerBehaviour {
     [SerializeField]
     public float NEUTRAL_MODIFIER;
 
-
     void Start()
     {
         rigidBody = GetComponent<Rigidbody>();
         timeSinceLast = Cooldown;
     }
 
+
     // Update is called once per frame
     void Update ()
     {
+		
         GetComponent<Animator>().SetFloat("Cooldown", timeSinceLast - Cooldown);
-        if (Input.GetButton(AxisString("Attack")) && timeSinceLast > Cooldown)
+        if (Input.GetButton(AxisString("Attack")) && timeSinceLast > Cooldown && GameManager.gameStart)
         {
             StartAttack();
         }
