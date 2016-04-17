@@ -40,15 +40,21 @@ public class AreaAttack : MonoBehaviour {
 
     void OnTriggerEnter(Collider other)
     {
-        var shapeShiferHit = other.gameObject.GetComponent<ShapeShifter>();
-        // TODO: Change topdown movement to TopDownMovement;
-        if (shapeShiferHit.PlayerID != _spawnerID && !_hitSuccess)
+        var shapeShiferHit = other.gameObject.GetComponentInParent<ShapeShifter>();
+        if(shapeShiferHit == null)
         {
-            var forceDirection = Vector3.ProjectOnPlane((other.transform.position - transform.position).normalized, new Vector3(0, 1, 0));
-            var shapeMod = GetShapeMultiplier(_attackingShape, other.GetComponent<ShapeShifter>().CurrentShape);
-            other.gameObject.GetComponent<Stunnable>().Stun(Mathf.Clamp(shapeMod * _stunTime, 0, _stunTime));
-            other.gameObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
-            other.gameObject.GetComponent<Rigidbody>().AddForce(_attackForce * shapeMod * forceDirection, ForceMode.Impulse);
+            return;
+        }
+        // TODO: Change topdown movement to TopDownMovement;
+        else if (shapeShiferHit.PlayerID != _spawnerID && !_hitSuccess)
+        {
+            var hit = shapeShiferHit.gameObject;
+
+            var forceDirection = Vector3.ProjectOnPlane((hit.transform.position - transform.position).normalized, new Vector3(0, 1, 0));
+            var shapeMod = GetShapeMultiplier(_attackingShape, hit.GetComponent<ShapeShifter>().CurrentShape);
+            hit.GetComponent<Stunnable>().Stun(Mathf.Clamp(shapeMod * _stunTime, 0, _stunTime));
+            hit.GetComponent<Rigidbody>().velocity = Vector3.zero;
+            hit.GetComponent<Rigidbody>().AddForce(_attackForce * shapeMod * forceDirection, ForceMode.Impulse);
             _hitSuccess = true;
         }
     }

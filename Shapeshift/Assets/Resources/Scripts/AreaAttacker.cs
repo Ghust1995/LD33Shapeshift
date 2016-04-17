@@ -100,7 +100,7 @@ public class AreaAttacker : MultiplayerBehaviour {
     void EndAttackLag()
     {
         //Debug.Log("Ending Attack Lag");
-        if(hitMiss)
+        if (hitMiss)
         {
             GetComponent<ShapeShifter>().ShiftShape();
         }
