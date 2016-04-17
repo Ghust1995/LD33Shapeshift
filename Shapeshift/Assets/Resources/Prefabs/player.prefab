@@ -306,7 +306,7 @@ MonoBehaviour:
   StartLag: 0.3
   MoveLag: 0.3
   EndLag: 0.5
-  Cooldown: 1.7
+  Cooldown: 1.5
   areaAttackPrefab: {fileID: 168316, guid: a2f9986961da8344dbe982ff3573f551, type: 2}
   ATTACK_FORCE: 20
   STUN_TIME: 1
@@ -335,7 +335,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60c69ec7e38d8bf40be6a29c300c2ac4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MOVE_SPEED: 5
+  MOVE_SPEED: 6
 --- !u!137 &13731674
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1
@@ -508,7 +508,7 @@ Prefab:
       objectReference: {fileID: 2100000, guid: 14411c91fc7301a46acd898fab4ee983, type: 2}
     - target: {fileID: 0}
       propertyPath: Cooldown
-      value: 1.7
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: StartLag
@@ -521,6 +521,14 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: ATTACK_FORCE
       value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: MOVE_SPEED
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: MoveLag
+      value: 0.3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

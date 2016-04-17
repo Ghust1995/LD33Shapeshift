@@ -26,7 +26,7 @@ public class TopDownMovement : MultiplayerBehaviour {
             var x = Input.GetAxis(AxisString("Horizontal"));
             var z = Input.GetAxis(AxisString("Vertical"));
             //Debug.Log(x + " " + z);
-            rigidBody.velocity = MOVE_SPEED * new Vector3(x, 0, z);
+            rigidBody.velocity = MOVE_SPEED * new Vector3(x, rigidBody.velocity.y/MOVE_SPEED, z);
             //Debug.Log(rigidBody.velocity);
             //TODO: Fix rotation
             //if(x != 0 || y != 0)
