@@ -4,6 +4,6 @@ using System.Collections;
 public class ExitArena : MonoBehaviour {
 	
 	void OnTriggerExit(Collider other){
-		other.gameObject.GetComponent<Player>().Die();
+		other.gameObject.GetComponentInParent<Player>().Die();
 	}
 }
