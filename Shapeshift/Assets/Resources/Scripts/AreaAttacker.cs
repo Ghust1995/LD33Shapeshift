@@ -75,13 +75,14 @@ public class AreaAttacker : MultiplayerBehaviour {
         timeSinceLast = 0.0f;
         _isAttacking = true;
         GetComponent<Rigidbody>().velocity = Vector3.zero;
+        GetComponent<Rigidbody>().AddForce(Vector3.up * 15, ForceMode.Impulse);
         Invoke("Attack", StartLag);
     }
 
     void Attack()
     {
         //Debug.Log("Attacking");
-
+        GetComponent<Rigidbody>().AddForce(Vector3.up * -40, ForceMode.Impulse);
         var aa = (GameObject)Instantiate(areaAttackPrefab, transform.position, transform.rotation);
         areaAttack = aa.GetComponent<AreaAttack>();
         areaAttack.Initialize(PlayerID, ATTACK_FORCE, STUN_TIME, WIN_MODIFIER, LOSE_MODIFIER, NEUTRAL_MODIFIER, GetComponent<ShapeShifter>().CurrentShape);
