@@ -16,6 +16,7 @@ public class ToggleHelp : MonoBehaviour {
             {
                 child.gameObject.SetActive(!child.gameObject.activeSelf);
             }
+            GameObject.Find("HelpText").gameObject.SetActive(false);
         }
 	}
 }

@@ -9,7 +9,7 @@ public class Player : MultiplayerBehaviour {
 			GameManager.score2++;
 		if(this.gameObject.name == "player2")
 			GameManager.score1++;
-		GameObject.Find("Player Scores").GetComponent<Text>().text = GameManager.score2 + "-" + GameManager.score1;
+		GameObject.Find("Player Scores").GetComponent<Text>().text = GameManager.score1 + "-" + GameManager.score2;
 		if(GameManager.score1>99 || GameManager.score2>99)
 			ShowEasterEgg();
 		GameObject.Find("CameraHolder1").GetComponent<Animator>().SetTrigger("Game Ended");

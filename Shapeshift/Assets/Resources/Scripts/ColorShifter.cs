@@ -7,6 +7,7 @@ public class ColorShifter : MonoBehaviour {
     public float value = 255;
     public float hueSpeed = 0.1f;
     private MeshRenderer meshRenderer;
+    private static float startHue = Random.Range(0.0f, 1.0f);
 
     public Vector3 hsvCurrent;
 
@@ -14,7 +15,7 @@ public class ColorShifter : MonoBehaviour {
 	void Start () {
         meshRenderer = GetComponent<MeshRenderer>();
         hsvCurrent = new Vector3();
-        meshRenderer.material.color = Color.HSVToRGB(Random.Range(0.0f,1.0f), saturation / 256.0f, value / 256.0f);
+        meshRenderer.material.color = Color.HSVToRGB(startHue, saturation / 256.0f, value / 256.0f);
     }
 	
 	// Update is called once per frame
