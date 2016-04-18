@@ -18,6 +18,18 @@ public class Player : MultiplayerBehaviour {
         GameManager.gameStarting = false;
     }
 
+
+    public AudioClip MoveSound;
+
+    void Update()
+    {
+        if(transform.position.y < -10000)
+        {
+            Destroy(this.gameObject);
+        }
+    }
+
+
     public void ShowEasterEgg(){
 		GameManager.easter1.gameObject.SetActive(true);
 		GameManager.easter2.gameObject.SetActive(true);

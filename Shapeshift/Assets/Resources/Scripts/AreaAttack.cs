@@ -37,6 +37,13 @@ public class AreaAttack : MonoBehaviour {
         _loseModifier = loseModifier;
         _neutralModifier = neutralModifier;
         _upPower = upPower;
+        Color c = new Color(
+            _attackingShape == ShapeType.rock ? 1 : 0,
+            _attackingShape == ShapeType.scissors ? 1 : 0,
+            _attackingShape == ShapeType.paper ? 1 : 0,
+            0.5f
+        );
+        GetComponent<MeshRenderer>().material.color = c;
         gameObject.SetActive(true);
     }
 
