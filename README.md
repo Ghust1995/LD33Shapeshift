@@ -1,4 +1,4 @@
-## DDD14440
+## DDD1440
 Your objective is to knock your opponent out of the ring.
 
 The game plays like rock paper scissors (you can press start to see the relationships between the shapes)
