@@ -8,6 +8,7 @@ public class AreaAttack : MonoBehaviour {
     private float _winModifier;
     private float _loseModifier;
     private float _neutralModifier;
+    private float _upPower;
 
     private ShapeType _attackingShape;
 
@@ -26,7 +27,7 @@ public class AreaAttack : MonoBehaviour {
         gameObject.SetActive(false);
 	}
 
-    public void Initialize(int playerID, float attackForce, float stunTime, float winModifier, float loseModifier, float neutralModifier, ShapeType attackingShape)
+    public void Initialize(int playerID, float attackForce, float stunTime, float winModifier, float loseModifier, float neutralModifier, ShapeType attackingShape, float upPower)
     {
         _spawnerID = playerID;
         _attackForce = attackForce;
@@ -35,6 +36,7 @@ public class AreaAttack : MonoBehaviour {
         _winModifier = winModifier;
         _loseModifier = loseModifier;
         _neutralModifier = neutralModifier;
+        _upPower = upPower;
         gameObject.SetActive(true);
     }
 
@@ -51,10 +53,14 @@ public class AreaAttack : MonoBehaviour {
             var hit = shapeShiferHit.gameObject;
 
             var forceDirection = Vector3.ProjectOnPlane((hit.transform.position - transform.position).normalized, new Vector3(0, 1, 0));
+            
             var shapeMod = GetShapeMultiplier(_attackingShape, hit.GetComponent<ShapeShifter>().CurrentShape);
-            hit.GetComponent<Stunnable>().Stun(Mathf.Clamp(shapeMod * _stunTime, 0, _stunTime));
+            hit.GetComponent<Stunnable>().Stun(Mathf.Clamp(_stunTime/shapeMod*shapeMod, 0, _stunTime));
             hit.GetComponent<Rigidbody>().velocity = Vector3.zero;
-            hit.GetComponent<Rigidbody>().AddForce(_attackForce * shapeMod * forceDirection, ForceMode.Impulse);
+            var force = _attackForce * shapeMod * forceDirection;
+            force += new Vector3(0, 1, 0) * _upPower;
+            Debug.Log(force);
+            hit.GetComponent<Rigidbody>().AddForce(force, ForceMode.Impulse);
             _hitSuccess = true;
         }
     }

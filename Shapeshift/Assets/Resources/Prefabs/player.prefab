@@ -308,9 +308,10 @@ MonoBehaviour:
   EndLag: 0.5
   Cooldown: 1.5
   areaAttackPrefab: {fileID: 168316, guid: a2f9986961da8344dbe982ff3573f551, type: 2}
-  ATTACK_FORCE: 20
-  STUN_TIME: 1
-  WIN_MODIFIER: 1.3
+  ATTACK_FORCE: 14
+  UP_FORCE: 10
+  STUN_TIME: 0.8
+  WIN_MODIFIER: 1.5
   LOSE_MODIFIER: 0.8
   NEUTRAL_MODIFIER: 1
 --- !u!114 &11424070
@@ -520,7 +521,7 @@ Prefab:
       objectReference: {fileID: 9100000, guid: 65fffbcdcde67da47a6aafd290695e33, type: 2}
     - target: {fileID: 0}
       propertyPath: ATTACK_FORCE
-      value: 20
+      value: 14
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: MOVE_SPEED
@@ -529,6 +530,18 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: MoveLag
       value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: UP_FORCE
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: WIN_MODIFIER
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: STUN_TIME
+      value: 0.8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

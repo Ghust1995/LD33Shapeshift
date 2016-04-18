@@ -37,6 +37,9 @@ public class AreaAttacker : MultiplayerBehaviour {
     public float ATTACK_FORCE;
 
     [SerializeField]
+    public float UP_FORCE;
+
+    [SerializeField]
     public float STUN_TIME;
 
     [SerializeField]
@@ -86,7 +89,7 @@ public class AreaAttacker : MultiplayerBehaviour {
         GetComponent<Rigidbody>().AddForce(Vector3.up * -40, ForceMode.Impulse);
         var aa = (GameObject)Instantiate(areaAttackPrefab, transform.position, transform.rotation);
         areaAttack = aa.GetComponent<AreaAttack>();
-        areaAttack.Initialize(PlayerID, ATTACK_FORCE, STUN_TIME, WIN_MODIFIER, LOSE_MODIFIER, NEUTRAL_MODIFIER, GetComponent<ShapeShifter>().CurrentShape);
+        areaAttack.Initialize(PlayerID, ATTACK_FORCE, STUN_TIME, WIN_MODIFIER, LOSE_MODIFIER, NEUTRAL_MODIFIER, GetComponent<ShapeShifter>().CurrentShape, UP_FORCE);
         Invoke("EndAttack", MoveLag);
     }
 
