@@ -12,7 +12,8 @@ public class Player : MultiplayerBehaviour {
 		GameObject.Find("Player Scores").GetComponent<Text>().text = GameManager.score1 + "-" + GameManager.score2;
 		if(GameManager.score1>99 || GameManager.score2>99)
 			ShowEasterEgg();
-		GameObject.Find("CameraHolder1").GetComponent<Animator>().SetTrigger("Game Ended");
+		if(GameObject.Find("player1") != null && GameObject.Find("player2")!= null)
+			GameObject.Find("CameraHolder1").GetComponent<Animator>().SetTrigger("Game Ended");
 		gameObject.name = "playerDead";
 		GameManager.gameStart = false;
         GameManager.gameStarting = false;
