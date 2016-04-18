@@ -20,7 +20,7 @@ public class AbuttonPress : MultiplayerBehaviour {
         }
         else
         {
-            transform.eulerAngles = Vector3.zero;
+            transform.position = initialPos;
         }
     }
 }

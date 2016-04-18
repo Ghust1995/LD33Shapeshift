@@ -30,8 +30,10 @@ public class AreaAttacker : MultiplayerBehaviour {
 
 
     public GameObject areaAttackPrefab;
+    public GameObject missPrefab;
 
     AreaAttack areaAttack;
+    MissMark missObject;
 
     [SerializeField]
     public float ATTACK_FORCE;
@@ -108,6 +110,10 @@ public class AreaAttacker : MultiplayerBehaviour {
         if (hitMiss)
         {
             GetComponent<ShapeShifter>().ShiftShape();
+            var mm = (GameObject)Instantiate(missPrefab, transform.position + Vector3.up, Quaternion.identity);
+            missObject = mm.GetComponent<MissMark>();
+            missObject.thingToFollow = transform;
+
         }
         _isAttacking = false;
     }

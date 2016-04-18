@@ -4597,6 +4597,7 @@ MonoBehaviour:
   EndLag: 0.5
   Cooldown: 1.5
   areaAttackPrefab: {fileID: 168316, guid: a2f9986961da8344dbe982ff3573f551, type: 2}
+  missPrefab: {fileID: 149048, guid: 7f3135c8e06484840890d82a15c9cd64, type: 2}
   ATTACK_FORCE: 14
   UP_FORCE: 10
   STUN_TIME: 0.8
