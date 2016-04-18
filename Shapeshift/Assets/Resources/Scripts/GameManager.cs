@@ -1,11 +1,14 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class GameManager : MultiplayerBehaviour {
 
 	public static bool gameStart = false;
     public static bool gameStarting = false;
     public GameObject PlayerPrefab;
+    public static int score1, score2;
+    public static GameObject easter1, easter2;
 
 	public void EnableControls(){
 		gameStart = true;
@@ -13,14 +16,20 @@ public class GameManager : MultiplayerBehaviour {
 
 	void Start(){
 		PlayerPrefab = Resources.Load<GameObject>("Prefabs/player");
+		score1 =99;
+		score2 = 0;
+		easter1 = GameObject.Find("EasterEgg1").gameObject;
+		easter2 = GameObject.Find("EasterEgg2").gameObject;
+		easter1.gameObject.SetActive(false);
+		easter2.gameObject.SetActive(false);
+		GameObject.Find("Player Scores").GetComponent<Text>().text = GameManager.score2 + "-" + GameManager.score1;
 	}
 
 	void Update(){
 		if (Input.GetButtonDown(AxisString("Attack")) && !GameManager.gameStart && !gameStarting) {
                 gameStarting = true;
-
                 GetComponent<Animator>().SetTrigger("A is Pressed");
-				GameObject instantiated = Instantiate(PlayerPrefab, new Vector3(2, -3, 0), Quaternion.identity) as GameObject;            
+				GameObject instantiated = Instantiate(PlayerPrefab, new Vector3(2, -3, 0), Quaternion.identity) as GameObject;          
                 Destroy(GameObject.Find("player2"));
                 Destroy(GameObject.Find("player1"));
                 instantiated.gameObject.name = "player1";
