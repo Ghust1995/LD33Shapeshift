@@ -26,15 +26,18 @@ public class Wobbler : MultiplayerBehaviour {
     // Update is called once per frame
     void Update () {
 
-        var d = new Vector3(
-           Input.GetAxis(AxisString("Horizontal")) * h, -Input.GetAxis(AxisString("Vertical")) * v, 0);
-            
-        d = Vector3.ClampMagnitude(d, 0.5f) * 2;
-        Debug.Log(d);
+        if (GameManager.gameStart == false && GameManager.gameStarting == false)
+        {
+            var d = new Vector3(
+               Input.GetAxis(AxisString("Horizontal")) * h, Input.GetAxis(AxisString("Vertical")) * v, 0);
 
-        // transform.position = center + radius * new Vector3(Mathf.Cos(speed * time) * h, Mathf.Sin(speed * time) * v, 0);
+            d = Vector3.ClampMagnitude(d, 0.5f) * 2;
 
-        transform.position = center + radius * d;
-        time += Time.deltaTime;
+            transform.position = center + radius * d;
+        }
+        else
+        {
+            transform.position = Vector3.zero;
+        }
 	}
 }
